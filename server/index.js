@@ -52,6 +52,54 @@ app.get('/api/products/:productId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/cart', (req, res, next) => {
+  res.json({});
+});
+
+app.post('/api/cart', (req, res, next) => {
+  if (!req.body.productId || req.body.productId <= 0) {
+    return res.status(400).json({ error: 'invalid productId or no productId given' });
+  }
+
+  const sql = `
+    select "price"
+      from "products"
+    where "productId" = $1
+  `;
+
+  const sql2 = `
+    insert into "carts" ("cartId", "createdAt")
+      values (default, default)
+    returning "cartId"
+  `;
+
+  // const sql3 = `
+  //   insert into "cartItems" ("cartId", "productId", "price")
+  //     values ($1, $2, $3)
+  //   returning "cartItemId"
+  // `;
+
+  const params = [parseInt(req.body.productId)];
+  db.query(sql, params)
+    .then(result => {
+      if (result.rows.length < 1) {
+        throw new ClientError('no products matching product id', 400);
+      } else {
+        return db.query(sql2)
+          .then(result2 => { return { cartId: result2.rows[0].cartId, price: result.rows[0].price }; });
+      }
+    })
+    .then(data => {
+      // req.session.cartId = data.cartId;
+      // return db.query(sql3)
+      //   .then(result2 => { return { cartId: result2.rows[0].cartId, price: result.rows[0].price }; });
+      // eslint-disable-next-line no-console
+      console.log(data);
+    })
+    .catch(err => next(err));
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
