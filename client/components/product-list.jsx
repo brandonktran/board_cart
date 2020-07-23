@@ -23,7 +23,7 @@ export default class ProductList extends React.Component {
   render() {
     const cards = this.state.products.map((card, index) => {
       return (
-        <ProductListItem key={index} card={card} />
+        <ProductListItem key={index} card={card} setView={this.props.setView} />
       );
     });
     return (
