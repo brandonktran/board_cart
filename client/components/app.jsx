@@ -4,7 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
-import { CSSTransitionGroup } from 'react-transition-group';
+import Transition from './transition-component';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -87,7 +87,8 @@ export default class App extends React.Component {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <CSSTransitionGroup
+          <Transition key={this.state.view.name} child={<ProductList setView={this.setView} />} />
+          {/* <CSSTransitionGroup
             key={this.state.view.name}
             transitionName="transition"
             transitionAppear={true}
@@ -95,7 +96,7 @@ export default class App extends React.Component {
             transitionEnter={false}
             transitionLeave={false}>
             <ProductList setView={this.setView} />
-          </CSSTransitionGroup>
+          </CSSTransitionGroup> */}
         </>
       );
     } else if (this.state.view.name === 'details') {
@@ -109,30 +110,14 @@ export default class App extends React.Component {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <CSSTransitionGroup
-            key={this.state.view.name}
-            transitionName="transition"
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionEnter={false}
-            transitionLeave={false}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.total} />
-          </CSSTransitionGroup>
+          <Transition key={this.state.view.name} child={<CartSummary cart={this.state.cart} setView={this.setView} total={this.total} />} />
         </>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <CSSTransitionGroup
-            key={this.state.view.name}
-            transitionName="transition"
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionEnter={false}
-            transitionLeave={false}>
-            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />
-          </CSSTransitionGroup>
+          <Transition key={this.state.view.name} child={<CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />} />
         </>
       );
     }
