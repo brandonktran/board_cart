@@ -25,7 +25,7 @@ export default class ProductDetails extends React.Component {
           transitionEnter={false}
           transitionLeave={false}>
           <div className="container" >
-            <div className="card m-2">
+            <div className="card m-2 border-light shadow">
               <a href="#" className="card-link m-1" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Content</a>
               <div className="row">
                 <div className="col">
