@@ -121,7 +121,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal} deleteFromCart={this.deleteFromCart} />
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} />
           </Transition>
         </>
       );
@@ -130,7 +130,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.calculateTotal} cart={this.state.cart} />
+            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.calculateTotal(this.state.cart)} cart={this.state.cart} />
           </Transition>
         </>
       );

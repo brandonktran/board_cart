@@ -43,7 +43,7 @@ export default class CheckoutForm extends React.Component {
     return (
       <div>
         <h1 className="text-center">My Cart</h1>
-        <h3 style={{ textAlign: 'center' }}>Total: ${this.props.total(this.props.cart)} </h3>
+        <h3 style={{ textAlign: 'center' }}>Total: ${this.props.total} </h3>
         <form className="text-center" onSubmit={this.handleSubmit} onReset={this.handleReset}>
           <div className="form-group">
             <label className="mr-2">Name</label> <br></br>

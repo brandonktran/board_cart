@@ -17,7 +17,7 @@ export default class CartSummary extends React.Component {
           <h3>My Cart</h3>
           {items}
           <div>
-            <h3 className="mb-4">Total: ${this.props.total(this.props.cart)} <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.setView('checkout', {}); }} style={{ float: 'right' }}>Checkout</button></h3>
+            <h3 className="mb-4">Total: ${this.props.total} <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.setView('checkout', {}); }} style={{ float: 'right' }}>Checkout</button></h3>
           </div>
         </div>
       );
