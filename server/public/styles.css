@@ -1,7 +1,17 @@
 img {
-  object-fit: cover;
+  height: 15rem;
+  object-fit: contain;
 }
 
 body {
   background-color: rgb(231, 229, 229);
+}
+
+.transition-appear {
+  opacity: 0.01;
+}
+
+.transition-appear.transition-appear-active {
+  opacity: 1;
+  transition: opacity 0.4s ;
 }
