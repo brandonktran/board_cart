@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductListItem from './product-list-item';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 export default class ProductList extends React.Component {
   constructor(props) {
@@ -27,11 +28,18 @@ export default class ProductList extends React.Component {
       );
     });
     return (
-      <div className="container" >
-        <div className="row" >
-          {cards}
+      <CSSTransitionGroup
+        transitionName="transition"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={false}
+        transitionLeave={false}>
+        <div className="container" >
+          <div className="row" >
+            {cards}
+          </div>
         </div>
-      </div>
+      </CSSTransitionGroup>
     );
   }
 }

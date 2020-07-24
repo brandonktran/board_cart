@@ -7,8 +7,8 @@ export default class Header extends React.Component {
       <nav className="navbar navbar-light bg-light">
         <h1 className="navbar-brand" style={{ fontSize: '35px', width: '100%' }}>
           Wicked Sales
-          <span style={{ float: 'right' }}>
-            <span className=" m-1" style={{ fontSize: '25px' }}>
+          <span style={{ float: 'right', cursor: 'pointer' }} onClick={() => { this.props.setView('cart', {}); }}>
+            <span className=" m-1" style={{ fontSize: '20px' }}>
               {this.props.cartItemCount} items
             </span>
             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-cart4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

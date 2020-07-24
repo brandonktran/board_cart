@@ -5,7 +5,7 @@ export default class CartSummaryItem extends React.Component {
   render() {
     if (this.props.item) {
       return (
-        <div className="m-1 p-1" style={{ margin: 'auto', backgroundColor: 'white' }}>
+        <div className="m-4 p-1" style={{ margin: 'auto', backgroundColor: 'white' }}>
           <div className="row">
             <div className="col-6">
               <img className="card-img-top ml-1" src={this.props.item.image.toString()} alt="Card image cap" />
