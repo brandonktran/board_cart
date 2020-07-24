@@ -9,17 +9,18 @@ import Transition from './transition-component';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.total = 0;
     this.state = {
       message: null,
       isLoading: true,
       view: { name: 'catalog', params: {} },
-      cart: []
+      cart: [],
+      total: 0
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
+    this.deleteFromCart = this.deleteFromCart.bind(this);
   }
 
   componentDidMount() {
@@ -49,16 +50,35 @@ export default class App extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ productId: product.productId }) //
+      body: JSON.stringify({ productId: product.productId })
     }).then(res => res.json())
       .then(data => this.setState((prevState, props) => {
         const newArray = [...prevState.cart];
-        newArray.push(product);
+        newArray.push(data);
         return (
           {
             cart: newArray
           });
       }))
+      .then(data => this.calculateTotal());
+  }
+
+  deleteFromCart(cartItemId) {
+    this.calculateTotal();
+    fetch(`/api/carts/${cartItemId}`, {
+      method: 'DELETE'
+
+    }).then(data => this.setState((prevState, props) => {
+      const newArray = prevState.cart.filter(item => {
+        if (item.cartItemId !== cartItemId) {
+          return item;
+        }
+      });
+      return (
+        {
+          cart: newArray
+        });
+    }))
       .then(data => this.calculateTotal());
   }
 
@@ -68,18 +88,19 @@ export default class App extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(object) //
+      body: JSON.stringify(object)
     }).then(res => res.json())
       .then(data => this.setState({ cart: [], view: { name: 'catalog', params: {} } }));
   }
 
   calculateTotal() {
+    let total = 0;
     if (this.state.cart.length > 0) {
-      this.total = this.state.cart.reduce((accumulator, currentValue) => {
+      total = this.state.cart.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.price;
       }, 0);
     }
-    return this.total;
+    this.setState({ total: total });
   }
 
   render() {
@@ -104,7 +125,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.total} />
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.state.total} deleteFromCart={this.deleteFromCart} />
           </Transition>
         </>
       );
@@ -113,7 +134,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />
+            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.state.total} />
           </Transition>
         </>
       );

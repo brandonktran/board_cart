@@ -13,7 +13,7 @@ export default class CartSummaryItem extends React.Component {
             <h1>{this.props.item.name}</h1>
             <h6 className="card-subtitle mb-2 text-muted">${this.props.item.price}</h6>
             <p>{this.props.item.shortDescription}</p>
-            <button>Remove from Cart</button>
+            <button onClick={() => { this.props.deleteFromCart(this.props.item.cartItemId); }}>Remove from Cart</button>
           </div>
         </div>
       </div>
