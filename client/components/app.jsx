@@ -9,7 +9,6 @@ import Transition from './transition-component';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.total = 0;
     this.state = {
       message: null,
       isLoading: true,
@@ -41,7 +40,7 @@ export default class App extends React.Component {
     fetch('/api/cart')
       .then(res => res.json())
       .then(data => this.setState({ cart: data }))
-      .then(data => this.calculateTotal());
+      .then(data => this.calculateTotal(this.state.cart));
   }
 
   addToCart(product) {
@@ -60,11 +59,10 @@ export default class App extends React.Component {
             cart: newArray
           });
       }))
-      .then(data => this.calculateTotal());
+      .then(data => this.calculateTotal(this.state.cart));
   }
 
   deleteFromCart(cartItemId) {
-    this.calculateTotal();
     fetch(`/api/carts/${cartItemId}`, {
       method: 'DELETE'
 
@@ -78,8 +76,7 @@ export default class App extends React.Component {
         {
           cart: newArray
         });
-    }))
-      .then(data => this.calculateTotal());
+    }));
   }
 
   placeOrder(object) {
@@ -93,12 +90,14 @@ export default class App extends React.Component {
       .then(data => this.setState({ cart: [], view: { name: 'catalog', params: {} } }));
   }
 
-  calculateTotal() {
-    if (this.state.cart.length > 0) {
-      this.total = this.state.cart.reduce((accumulator, currentValue) => {
+  calculateTotal(array) {
+    let result = 0;
+    if (array.length > 0) {
+      result = array.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.price;
       }, 0);
     }
+    return result;
 
   }
 
@@ -124,7 +123,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.total} deleteFromCart={this.deleteFromCart} />
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal} deleteFromCart={this.deleteFromCart} />
           </Transition>
         </>
       );
@@ -133,7 +132,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />
+            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.calculateTotal} cart={this.state.cart} />
           </Transition>
         </>
       );
