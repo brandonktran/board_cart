@@ -9,12 +9,12 @@ import Transition from './transition-component';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.total = 0;
     this.state = {
       message: null,
       isLoading: true,
       view: { name: 'catalog', params: {} },
-      cart: [],
-      total: 0
+      cart: []
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -94,13 +94,12 @@ export default class App extends React.Component {
   }
 
   calculateTotal() {
-    let total = 0;
     if (this.state.cart.length > 0) {
-      total = this.state.cart.reduce((accumulator, currentValue) => {
+      this.total = this.state.cart.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.price;
       }, 0);
     }
-    this.setState({ total: total });
+
   }
 
   render() {
@@ -125,7 +124,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.state.total} deleteFromCart={this.deleteFromCart} />
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.total} deleteFromCart={this.deleteFromCart} />
           </Transition>
         </>
       );
@@ -134,7 +133,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.state.total} />
+            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />
           </Transition>
         </>
       );
