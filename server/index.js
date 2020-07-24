@@ -159,6 +159,25 @@ app.post('/api/orders', (req, res, next) => {
 
 });
 
+app.delete('/api/carts/:cartItemId', (req, res, next) => {
+  if (!req.session.cartId) {
+    return res.status(400).json({ error: 'No cart' });
+  }
+
+  const sql = `
+    delete from "cartItems"
+      where "cartItemId" = $1 and "cartId" = $2
+  `;
+
+  const params = [req.params.cartItemId, req.session.cartId];
+  db.query(sql, params)
+    .then(result => {
+      return res.status(204).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
