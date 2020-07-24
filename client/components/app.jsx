@@ -8,12 +8,12 @@ import CheckoutForm from './checkout-form';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.total = 0;
     this.state = {
       message: null,
       isLoading: true,
       view: { name: 'catalog', params: {} },
-      cart: [],
-      total: 0
+      cart: []
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -73,13 +73,12 @@ export default class App extends React.Component {
   }
 
   calculateTotal() {
-    let total = 0;
     if (this.state.cart.length > 0) {
-      total = this.state.cart.reduce((accumulator, currentValue) => {
+      this.total = this.state.cart.reduce((accumulator, currentValue) => {
         return accumulator + currentValue.price;
       }, 0);
     }
-    this.setState({ total: total });
+    return this.total;
   }
 
   render() {
@@ -101,14 +100,14 @@ export default class App extends React.Component {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <CartSummary cart={this.state.cart} setView={this.setView} total={this.state.total} />
+          <CartSummary cart={this.state.cart} setView={this.setView} total={this.total} />
         </>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.state.total} />
+          <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />
         </>
       );
     }

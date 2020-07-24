@@ -43,7 +43,7 @@ export default class CheckoutForm extends React.Component {
     const submitInfo = { name: this.state.name, creditCard: this.state.card, shippingAddress: this.state.address };
     return (
       <CSSTransitionGroup
-        transitionName="example"
+        transitionName="transition"
         transitionAppear={true}
         transitionAppearTimeout={500}
         transitionEnter={false}

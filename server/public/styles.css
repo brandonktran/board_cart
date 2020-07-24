@@ -13,5 +13,5 @@ body {
 
 .transition-appear.transition-appear-active {
   opacity: 1;
-  transition: opacity 0.4s ;
+  transition: opacity 0.5s ;
 }
