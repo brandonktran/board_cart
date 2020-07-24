@@ -87,16 +87,9 @@ export default class App extends React.Component {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <Transition key={this.state.view.name} child={<ProductList setView={this.setView} />} />
-          {/* <CSSTransitionGroup
-            key={this.state.view.name}
-            transitionName="transition"
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionEnter={false}
-            transitionLeave={false}>
+          <Transition key={this.state.view.name}>
             <ProductList setView={this.setView} />
-          </CSSTransitionGroup> */}
+          </Transition>
         </>
       );
     } else if (this.state.view.name === 'details') {
@@ -110,14 +103,18 @@ export default class App extends React.Component {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <Transition key={this.state.view.name} child={<CartSummary cart={this.state.cart} setView={this.setView} total={this.total} />} />
+          <Transition key={this.state.view.name}>
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.total} />
+          </Transition>
         </>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <Transition key={this.state.view.name} child={<CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />} />
+          <Transition key={this.state.view.name}>
+            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.total} />
+          </Transition>
         </>
       );
     }

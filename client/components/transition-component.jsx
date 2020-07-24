@@ -10,7 +10,7 @@ export default function Transition(props) {
       transitionAppearTimeout={500}
       transitionEnter={false}
       transitionLeave={false}>
-      {props.child}
+      {props.children}
     </CSSTransitionGroup>
   );
 }
