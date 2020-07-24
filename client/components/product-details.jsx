@@ -46,7 +46,9 @@ export default class ProductDetails extends React.Component {
         </CSSTransitionGroup>
       );
     }
-    return null;
+    return (
+      null
+    );
 
   }
 }
