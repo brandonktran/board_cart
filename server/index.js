@@ -166,10 +166,10 @@ app.delete('/api/carts/:cartItemId', (req, res, next) => {
 
   const sql = `
     delete from "cartItems"
-      where "cartItemId" = $1
+      where "cartItemId" = $1 and "cartId" = $2
   `;
 
-  const params = [req.params.cartItemId];
+  const params = [req.params.cartItemId, req.session.cartId];
   db.query(sql, params)
     .then(result => {
       return res.status(204).json(result.rows[0]);
