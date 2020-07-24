@@ -172,7 +172,7 @@ app.delete('/api/carts/:cartItemId', (req, res, next) => {
   const params = [req.params.cartItemId];
   db.query(sql, params)
     .then(result => {
-      return res.status(201).json(result.rows[0]);
+      return res.status(204).json(result.rows[0]);
     })
     .catch(err => next(err));
 
