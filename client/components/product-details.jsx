@@ -28,6 +28,7 @@ export default class ProductDetails extends React.Component {
                 <h5 className="card-title">{this.state.product.name}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">${this.state.product.price}</h6>
                 <p className="card-text">{this.state.product.shortDescription}</p>
+                <button type="button" className="btn btn-primary" onClick={() => { this.props.addToCart(this.state.product); }}>Add to Cart</button>
               </div>
             </div>
             <div className="card-body">
