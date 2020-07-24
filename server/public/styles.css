@@ -7,6 +7,10 @@ body {
   background-color: rgb(231, 229, 229);
 }
 
+.card {
+  border: 1px rgb(226, 226, 226) solid;
+}
+
 .transition-appear {
   opacity: 0.01;
 }

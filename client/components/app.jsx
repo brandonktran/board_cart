@@ -39,8 +39,7 @@ export default class App extends React.Component {
   getCartItems() {
     fetch('/api/cart')
       .then(res => res.json())
-      .then(data => this.setState({ cart: data }))
-      .then(data => this.calculateTotal(this.state.cart));
+      .then(data => this.setState({ cart: data }));
   }
 
   addToCart(product) {
@@ -58,8 +57,7 @@ export default class App extends React.Component {
           {
             cart: newArray
           });
-      }))
-      .then(data => this.calculateTotal(this.state.cart));
+      }));
   }
 
   deleteFromCart(cartItemId) {
