@@ -21,11 +21,20 @@ export default class ProductList extends React.Component {
   }
 
   render() {
-    const cards = this.state.products.map((card, index) => {
+    let cards = this.state.products.map((card, index) => {
       return (
-        <ProductListItem key={index} card={card} setView={this.props.setView} />
+        <ProductListItem key={index} card={card} setView={this.props.setView} category={this.props.category} />
       );
     });
+
+    if (this.props.category === 'skate') {
+      cards = cards.splice(0, 9);
+    } else if (this.props.category === 'snow') {
+      cards = cards.splice(9, 9);
+    } else if (this.props.category === 'surf') {
+      cards = cards.splice(18, 9);
+    }
+
     return (
       <div className="container" >
         <div className="row" >

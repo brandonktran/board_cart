@@ -5,6 +5,7 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import Transition from './transition-component';
+import FrontPage from './front-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: { name: 'catalog', params: {} },
+      view: { name: 'front', params: {} },
       cart: []
     };
     this.setView = this.setView.bind(this);
@@ -85,7 +86,7 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(object)
     }).then(res => res.json())
-      .then(data => this.setState({ cart: [], view: { name: 'catalog', params: {} } }));
+      .then(data => this.setState({ cart: [], view: { name: 'front', params: {} } }));
   }
 
   calculateTotal(array) {
@@ -100,12 +101,21 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.view.name === 'catalog') {
+    if (this.state.view.name === 'front') {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <ProductList setView={this.setView} />
+            <FrontPage setView={this.setView} />
+          </Transition>
+        </>
+      );
+    } else if (this.state.view.name === 'catalog') {
+      return (
+        <>
+          <Header cartItemCount={this.state.cart.length} setView={this.setView} />
+          <Transition key={this.state.view.name}>
+            <ProductList setView={this.setView} category={this.state.view.params.type} />
           </Transition>
         </>
       );
@@ -113,7 +123,7 @@ export default class App extends React.Component {
       return (
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView} />
+          <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView} category={this.state.view.params.type} />
         </>
       );
     } else if (this.state.view.name === 'cart') {
@@ -121,7 +131,7 @@ export default class App extends React.Component {
         <>
           <Header cartItemCount={this.state.cart.length} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} />
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} category={this.state.view.params.type} />
           </Transition>
         </>
       );
