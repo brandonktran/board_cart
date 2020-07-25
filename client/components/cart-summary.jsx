@@ -13,7 +13,7 @@ export default class CartSummary extends React.Component {
     if (this.props.cart.length > 0) {
       return (
         <div className="container">
-          <h4><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Catalog</a></h4>
+          <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Catalog</a></h4>
           <h3>My Cart</h3>
           {items}
           <div>
@@ -24,7 +24,7 @@ export default class CartSummary extends React.Component {
     }
     return (
       <div className="container">
-        <h4><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Catalog</a></h4>
+        <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Catalog</a></h4>
         <h3>My Cart</h3>
         {items}
       </div>

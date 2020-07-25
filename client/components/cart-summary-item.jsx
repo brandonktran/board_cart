@@ -4,7 +4,7 @@ export default class CartSummaryItem extends React.Component {
 
   render() {
     return (
-      <div className="m-4 p-1 shadow border-light" style={{ margin: 'auto', backgroundColor: 'white' }}>
+      <div className="m-3 p-1 shadow border-light" style={{ backgroundColor: 'white' }}>
         <div className="row">
           <div className="col-6">
             <img className="card-img-top ml-1" src={this.props.item.image.toString()} alt="Card image cap" />
