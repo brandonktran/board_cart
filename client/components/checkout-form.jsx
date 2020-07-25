@@ -20,8 +20,9 @@ export default class CheckoutForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, info) {
     event.preventDefault();
+    this.props.placeOrder(info);
     this.setState({
       name: '',
       card: '',
@@ -44,22 +45,22 @@ export default class CheckoutForm extends React.Component {
       <div>
         <h1 className="text-center">My Cart</h1>
         <h3 style={{ textAlign: 'center' }}>Total: ${this.props.total} </h3>
-        <form className="text-center" onSubmit={this.handleSubmit} onReset={this.handleReset}>
+        <form className="text-center" onSubmit={() => { this.handleSubmit(event, submitInfo); }} onReset={this.handleReset}>
           <div className="form-group">
             <label className="mr-2">Name</label> <br></br>
-            <input type="text" onChange={this.handleChange} name="name" />
+            <input required type="text" onChange={this.handleChange} name="name" />
           </div>
           <div className="form-group">
             <label className="mr-2">Credit Card</label> <br></br>
-            <input type="text" onChange={this.handleChange} name="card" />
+            <input required type="text" onChange={this.handleChange} name="card" />
           </div>
           <div className="form-group">
             <label className="mr-2">Shipping Address</label> <br></br>
-            <textarea type="text" onChange={this.handleChange} name="address"></textarea>
+            <textarea required type="text" onChange={this.handleChange} name="address"></textarea>
           </div>
           <div>
-            <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.placeOrder(submitInfo); }}>Place Order</button>
             <h4><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.handleReset(); }}> &lt; Continue Shopping</a></h4>
+            <button type="submit" className="btn btn-success m-1">Place Order</button>
           </div>
         </form>
       </div>

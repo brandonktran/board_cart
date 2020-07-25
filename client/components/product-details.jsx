@@ -26,7 +26,7 @@ export default class ProductDetails extends React.Component {
           transitionLeave={false}>
           <div className="container" >
             <div className="card m-2 border-light shadow">
-              <a href="#" className="card-link m-1" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Content</a>
+              <a href="#" className="card-link m-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Content</a>
               <div className="row">
                 <div className="col">
                   <img className="card-img-top ml-1 h-100" src={this.state.product.image.toString()} alt="Card image cap" />
