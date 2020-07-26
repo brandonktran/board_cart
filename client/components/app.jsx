@@ -99,7 +99,7 @@ export default class App extends React.Component {
   }
 
   deleteAllFromCart(cartItemId) {
-    fetch(`/api/carts/${cartItemId}`, {
+    fetch(`/api/carts/all/${cartItemId}`, {
       method: 'DELETE'
 
     }).then(data => this.setState((prevState, props) => {
