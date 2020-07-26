@@ -36,7 +36,7 @@ export default class CheckoutForm extends React.Component {
       card: '',
       address: ''
     });
-    this.props.setView('catalog', {});
+    this.props.setView('front', {});
   }
 
   render() {

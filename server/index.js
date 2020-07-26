@@ -57,6 +57,7 @@ app.get('/api/cart', (req, res, next) => {
     select "c"."cartItemId",
           "c"."price",
           "p"."productId",
+          "c"."quantity",
           "p"."image",
           "p"."name",
           "p"."shortDescription"
@@ -77,6 +78,67 @@ app.get('/api/cart', (req, res, next) => {
   }
 });
 
+// app.post('/api/cart', (req, res, next) => {
+//   if (!req.body.productId || req.body.productId <= 0) {
+//     return res.status(400).json({ error: 'invalid productId or no productId given' });
+//   }
+
+//   const sql = `
+//     select "price"
+//       from "products"
+//     where "productId" = $1
+//   `;
+
+//   const sql2 = `
+//     insert into "carts" ("cartId", "createdAt")
+//       values (default, default)
+//     returning "cartId"
+//   `;
+
+//   const sql3 = `
+//     insert into "cartItems" ("cartId", "productId", "price")
+//       values ($1, $2, $3)
+//     returning "cartItemId"
+//   `;
+
+//   const sql4 = `
+//     select "c"."cartItemId",
+//         "c"."price",
+//         "p"."productId",
+//         "p"."image",
+//         "p"."name",
+//         "p"."shortDescription"
+//     from "cartItems" as "c"
+//     join "products" as "p" using ("productId")
+//     where "c"."cartItemId" = $1
+//   `;
+
+//   const params = [parseInt(req.body.productId)];
+//   db.query(sql, params)
+//     .then(result => {
+//       if (result.rows.length < 1) {
+//         throw new ClientError('no products matching product id', 400);
+//       } else {
+//         if (req.session.cartId) {
+//           return { cartId: req.session.cartId, price: result.rows[0].price };
+//         }
+//         return db.query(sql2)
+//           .then(result2 => { return { cartId: result2.rows[0].cartId, price: result.rows[0].price }; });
+//       }
+//     })
+//     .then(data => {
+//       req.session.cartId = data.cartId;
+//       return db.query(sql3, [data.cartId, parseInt(req.body.productId), data.price])
+//         .then(result => result.rows[0]);
+//     })
+//     .then(data => {
+//       return db.query(sql4, [data.cartItemId])
+//         .then(result => res.status(201).json(result.rows[0]));
+//     })
+//     .catch(err => next(err));
+
+// });
+
 app.post('/api/cart', (req, res, next) => {
   if (!req.body.productId || req.body.productId <= 0) {
     return res.status(400).json({ error: 'invalid productId or no productId given' });
@@ -95,14 +157,15 @@ app.post('/api/cart', (req, res, next) => {
   `;
 
   const sql3 = `
-    insert into "cartItems" ("cartId", "productId", "price")
-      values ($1, $2, $3)
+    insert into "cartItems" ("cartId", "productId", "price", "quantity")
+      values ($1, $2, $3, $4)
     returning "cartItemId"
   `;
 
   const sql4 = `
     select "c"."cartItemId",
         "c"."price",
+        "c"."quantity",
         "p"."productId",
         "p"."image",
         "p"."name",
@@ -127,8 +190,22 @@ app.post('/api/cart', (req, res, next) => {
     })
     .then(data => {
       req.session.cartId = data.cartId;
-      return db.query(sql3, [data.cartId, parseInt(req.body.productId), data.price])
-        .then(result => result.rows[0]);
+      const findQuery = `select count(*) from "cartItems"
+      where "productId" = $1 and "cartId"=$2`;
+      return db.query(findQuery, [parseInt(req.body.productId), req.session.cartId])
+        .then(result => result.rows[0])
+        .then(count => {
+          if (parseInt(count.count) === 0) {
+            return db.query(sql3, [data.cartId, parseInt(req.body.productId), data.price, 1])
+              .then(result => result.rows[0]);
+          } else {
+            const incrementQuery = `update "cartItems" set "quantity" =
+              quantity + $2 where "productId" = $1 and "cartId"=$3
+            returning "cartItemId"`;
+            return db.query(incrementQuery, [parseInt(req.body.productId), 1, req.session.cartId])
+              .then(result => result.rows[0]);
+          }
+        });
     })
     .then(data => {
       return db.query(sql4, [data.cartItemId])
@@ -168,6 +245,41 @@ app.delete('/api/carts/:cartItemId', (req, res, next) => {
     delete from "cartItems"
       where "cartItemId" = $1 and "cartId" = $2
   `;
+  const findQuery = `select "quantity" from "cartItems"
+      where "cartItemId" = $1 and "cartId"= $2`;
+
+  const params = [req.params.cartItemId, req.session.cartId];
+  db.query(findQuery, params)
+    .then(result => {
+      return result.rows[0];
+    }).then(data => {
+      if (data.quantity > 1) {
+        const decrementQuery = `update "cartItems" set "quantity" =
+        quantity - $2 where "cartItemId" = $1 and "cartId" = $3
+        returning "cartItemId"`;
+        db.query(decrementQuery, [req.params.cartItemId, 1, req.session.cartId])
+          .then(result => res.status(201).json(result.rows[0]));
+      } else if (data.quantity === 1) {
+        db.query(sql, params)
+          .then(result => {
+            return res.status(204).json(result.rows[0]);
+          })
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+
+});
+
+app.delete('/api/carts/all/:cartItemId', (req, res, next) => {
+  if (!req.session.cartId) {
+    return res.status(400).json({ error: 'No cart' });
+  }
+
+  const sql = `
+    delete from "cartItems"
+      where "cartItemId" = $1 and "cartId" = $2
+  `;
 
   const params = [req.params.cartItemId, req.session.cartId];
   db.query(sql, params)
@@ -179,7 +291,7 @@ app.delete('/api/carts/:cartItemId', (req, res, next) => {
 });
 
 app.use('/api', (req, res, next) => {
-  next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
+  next(new ClientError(`cannot ${req.method} ${req.originalUrl} `, 404));
 });
 
 app.use((err, req, res, next) => {

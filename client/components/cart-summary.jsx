@@ -6,14 +6,14 @@ export default class CartSummary extends React.Component {
   render() {
     const items = this.props.cart.map((item, index) => {
       return (
-        <CartSummaryItem key={index} item={item} deleteFromCart={this.props.deleteFromCart} />
+        <CartSummaryItem key={index} item={item} deleteFromCart={this.props.deleteFromCart} deleteAllFromCart={this.props.deleteAllFromCart} addToCart={this.props.addToCart} />
       );
     });
 
     if (this.props.cart.length > 0) {
       return (
         <div className="container">
-          <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Catalog</a></h4>
+          <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}> &lt; Back to Home</a></h4>
           <h3>My Cart</h3>
           {items}
           <div>
@@ -24,8 +24,9 @@ export default class CartSummary extends React.Component {
     }
     return (
       <div className="container">
-        <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', {}); }}> &lt; Back to Catalog</a></h4>
+        <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}> &lt; Back to Home</a></h4>
         <h3>My Cart</h3>
+        Cart is Empty
         {items}
       </div>
     );

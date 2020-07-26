@@ -5,6 +5,8 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import Transition from './transition-component';
+import FrontPage from './front-page';
+import Footer from './footer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +14,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isLoading: true,
-      view: { name: 'catalog', params: {} },
+      view: { name: 'front', params: {} },
       cart: []
     };
     this.setView = this.setView.bind(this);
@@ -20,6 +22,7 @@ export default class App extends React.Component {
     this.placeOrder = this.placeOrder.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.deleteFromCart = this.deleteFromCart.bind(this);
+    this.deleteAllFromCart = this.deleteAllFromCart.bind(this);
   }
 
   componentDidMount() {
@@ -51,8 +54,23 @@ export default class App extends React.Component {
       body: JSON.stringify({ productId: product.productId })
     }).then(res => res.json())
       .then(data => this.setState((prevState, props) => {
-        const newArray = [...prevState.cart];
-        newArray.push(data);
+        let newArray = [...prevState.cart];
+        const item = newArray.filter(item => {
+          if (item.productId === product.productId) {
+            return item;
+          }
+        });
+        if (item.length > 0) {
+          newArray = newArray.map(item => {
+            if (item.productId === product.productId) {
+              return data;
+            } else {
+              return item;
+            }
+          });
+        } else {
+          newArray.push(data);
+        }
         return (
           {
             cart: newArray
@@ -62,6 +80,26 @@ export default class App extends React.Component {
 
   deleteFromCart(cartItemId) {
     fetch(`/api/carts/${cartItemId}`, {
+      method: 'DELETE'
+
+    }).then(data => this.setState((prevState, props) => {
+      const newArray = prevState.cart.filter(item => {
+        if (item.cartItemId !== cartItemId) {
+          return item;
+        } else if (item.cartItemId === cartItemId && item.quantity > 1) {
+          item.quantity--;
+          return item;
+        }
+      });
+      return (
+        {
+          cart: newArray
+        });
+    }));
+  }
+
+  deleteAllFromCart(cartItemId) {
+    fetch(`/api/carts/all/${cartItemId}`, {
       method: 'DELETE'
 
     }).then(data => this.setState((prevState, props) => {
@@ -85,52 +123,76 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(object)
     }).then(res => res.json())
-      .then(data => this.setState({ cart: [], view: { name: 'catalog', params: {} } }));
+      .then(data => this.setState({ cart: [], view: { name: 'front', params: {} } }));
   }
 
   calculateTotal(array) {
     let result = 0;
     if (array.length > 0) {
       result = array.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.price;
+        return accumulator + currentValue.price * currentValue.quantity;
       }, 0);
     }
     return result;
 
   }
 
+  totalItems(array) {
+    let result = 0;
+    if (array.length > 0) {
+      result = array.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.quantity;
+      }, 0);
+    }
+    return result;
+  }
+
   render() {
-    if (this.state.view.name === 'catalog') {
+    if (this.state.view.name === 'front') {
       return (
         <>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} />
+          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <ProductList setView={this.setView} />
+            <FrontPage setView={this.setView} />
           </Transition>
+          <Footer />
+        </>
+      );
+    } else if (this.state.view.name === 'catalog') {
+      return (
+        <>
+          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+          <Transition key={this.state.view.name}>
+            <ProductList setView={this.setView} category={this.state.view.params.type} />
+          </Transition>
+          <Footer />
         </>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} />
-          <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView} />
+          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+          <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView} category={this.state.view.params.type} />
+          <Footer />
         </>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} />
+          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
           <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} />
+            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} deleteAllFromCart={this.deleteAllFromCart} category={this.state.view.params.type} addToCart={this.addToCart} />
+            <Footer />
           </Transition>
         </>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <>
-          <Header cartItemCount={this.state.cart.length} setView={this.setView} />
+          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
           <Transition key={this.state.view.name}>
             <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.calculateTotal(this.state.cart)} cart={this.state.cart} />
+            <Footer />
           </Transition>
         </>
       );
