@@ -11,7 +11,7 @@ export default class CartSummaryItem extends React.Component {
           </div>
           <div className="col m-2 mb-3">
             <h1>{this.props.item.name}</h1>
-            <h6 className="card-subtitle mb-2 text-muted">${this.props.item.price}</h6>
+            <h6 className="card-subtitle mb-2 text-muted">${this.props.item.price * this.props.item.quantity}</h6>
             <div>
               Quantity:
               <a href="#" className="incrementers previous border ml-2" onClick={() => { this.props.deleteFromCart(this.props.item.cartItemId); }}>-</a><span className="mx-2">{this.props.item.quantity}</span>
