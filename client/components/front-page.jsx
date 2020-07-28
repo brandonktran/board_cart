@@ -23,15 +23,15 @@ export default class FrontPage extends React.Component {
         </div>
         <div className="container" >
           <div className="row" >
-            <div className="col-md-4 front-link my-2" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: 'skate' }); }}>
+            <div className="col-md-4 front-link my-3" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: 'skate' }); }}>
               <img src="images/skate-front-link.jpg" alt="Skate" style={{ width: '100%' }} />
               <div className="centered">Skate</div>
             </div>
-            <div className="col-md-4 front-link my-2" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: 'snow' }); }}>
+            <div className="col-md-4 front-link my-3" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: 'snow' }); }}>
               <img src="images/snow-front-link.jpg" alt="Snow" style={{ width: '18rem' }} />
               <div className="centered">Snow</div>
             </div>
-            <div className="col-md-4 front-link my-2" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: 'surf' }); }}>
+            <div className="col-md-4 front-link my-3" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: 'surf' }); }}>
               <img src="images/surf-front-link.jpg" alt="Surf" style={{ width: '16rem' }} />
               <div className="centered">Surf</div>
             </div>

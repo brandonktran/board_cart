@@ -9,7 +9,7 @@ export default class ProductListItem extends React.Component {
           <img className="card-img-top mt-1" src={this.props.card.image.toString()} alt="Card image cap" />
           <div className="card-body">
             <h3>{this.props.card.name}</h3>
-            <h6 className="text-muted">${this.props.card.price}</h6>
+            <h5 className="text-muted">${this.props.card.price}</h5>
             <p className="card-text">{this.props.card.shortDescription}</p>
           </div>
         </div>

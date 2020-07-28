@@ -14,10 +14,10 @@ export default class CartSummary extends React.Component {
       return (
         <div className="container">
           <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}> &lt; Back to Home</a></h4>
-          <h3>My Cart</h3>
+          <h1>My Cart</h1>
           {items}
           <div>
-            <h3 className="mb-4">Total: ${this.props.total} <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.setView('checkout', {}); }} style={{ float: 'right' }}>Checkout</button></h3>
+            <h3 className="mb-4 mt-2">Total: ${this.props.total} <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.setView('checkout', {}); }} style={{ float: 'right' }}>Checkout</button></h3>
           </div>
         </div>
       );
@@ -25,9 +25,8 @@ export default class CartSummary extends React.Component {
     return (
       <div className="container">
         <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}> &lt; Back to Home</a></h4>
-        <h3>My Cart</h3>
+        <h1>My Cart</h1>
         Cart is Empty
-        {items}
       </div>
     );
 
