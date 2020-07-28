@@ -12,12 +12,12 @@ export default class FrontPage extends React.Component {
     return (
       <>
         <div className="carousel slide" style={{ width: '100%' }} data-ride="carousel" data-interval="2000">
-          <div className="carousel-inner">
-            <div className="carousel-item active front-image" style={{ backgroundImage: 'url("images/girl-merch.jpg")' }}>
+          <div className="carousel-inner shadow">
+            <div className="carousel-item active front-image front-image-1" style={{ backgroundImage: 'url("images/skate-pipe-front.jpg")' }}>
             </div>
-            <div className="carousel-item front-image" style={{ backgroundImage: 'url("images/skatepark.jpg")' }}>
+            <div className="carousel-item front-image front-image-2" style={{ backgroundImage: 'url("images/surf-front.jpg")' }}>
             </div>
-            <div className="carousel-item front-image" style={{ backgroundImage: 'url("images/skatepark.jpg")' }}>
+            <div className="carousel-item front-image front-image-3" style={{ backgroundImage: 'url("images/snowboard-equipment-front.jpg")' }}>
             </div>
           </div>
         </div>
