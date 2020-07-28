@@ -5,14 +5,33 @@ export default class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: null
+      product: null,
+      quantity: 1
     };
+    this.quantityChange = this.quantityChange.bind(this);
   }
 
   componentDidMount() {
     fetch(`/api/products/${this.props.params.productId}`)
       .then(res => res.json())
       .then(data => this.setState({ product: data }));
+  }
+
+  quantityChange(operator) {
+    this.setState((prevState, props) => {
+      if (operator === '-' && prevState.quantity !== 1) {
+        return (
+          {
+            quantity: prevState.quantity - 1
+          });
+      } else if (operator === '+') {
+        return (
+          {
+            quantity: prevState.quantity + 1
+          });
+      }
+    }
+    );
   }
 
   render() {
@@ -28,7 +47,7 @@ export default class ProductDetails extends React.Component {
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
                 <div className="modal-body">
-                  An item was added to your cart!
+                  Item(s) was added to your cart!
                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -51,7 +70,10 @@ export default class ProductDetails extends React.Component {
                   <h5 className="card-title">{this.state.product.name}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">${this.state.product.price}</h6>
                   <p className="card-text">{this.state.product.shortDescription}</p>
-                  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#ModalViewCart" onClick={() => { this.props.addToCart(this.state.product); }}>
+                                Quantity:
+                  <button className="incrementers previous border ml-2" onClick={() => this.quantityChange('-')}>-</button><span className="m-2">{this.state.quantity}</span>
+                  <button href="#" className="incrementers next border" onClick={() => this.quantityChange('+')}>+</button>
+                  <button type="button" className="btn btn-primary ml-2" data-toggle="modal" data-target="#ModalViewCart" onClick={() => { this.props.addToCart(this.state.product, this.state.quantity); }}>
                     Add to Cart
                   </button>
                 </div>

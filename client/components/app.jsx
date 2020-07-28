@@ -45,13 +45,13 @@ export default class App extends React.Component {
       .then(data => this.setState({ cart: data }));
   }
 
-  addToCart(product) {
+  addToCart(product, amount) {
     fetch('api/cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ productId: product.productId })
+      body: JSON.stringify({ productId: product.productId, amount: amount })
     }).then(res => res.json())
       .then(data => this.setState((prevState, props) => {
         let newArray = [...prevState.cart];
