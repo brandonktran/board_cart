@@ -31,11 +31,23 @@ button {
 }
 
 .front-image {
-  height:400px;
-  background-size: contain;
+  height:380px;
+  background-size:cover;
   background-repeat: no-repeat;
   background-position-y: 9%;
-  background-size: 100%;
+  background-position-x: 50%;
+}
+
+.front-image-1 {
+  background-position-y: 40%;
+}
+
+.front-image-2 {
+  background-position-y: 80%;
+}
+
+.front-image-3 {
+  background-position-y: 5%;
 }
 
 .incrementers {
