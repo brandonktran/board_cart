@@ -64,9 +64,9 @@ export default class ProductDetails extends React.Component {
               <a href="#" className="card-link m-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('catalog', { type: this.props.category }); }}> &lt; Back to Content</a>
               <div className="row">
                 <div className="col">
-                  <img className="card-img-top ml-1 h-100" src={this.state.product.image.toString()} alt="Card image cap" />
+                  <img className="card-img-top ml-2 h-100" src={this.state.product.image.toString()} alt="Card image cap" />
                 </div>
-                <div className="col">
+                <div className="col m-2">
                   <h5 className="card-title">{this.state.product.name}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">${this.state.product.price}</h6>
                   <p className="card-text">{this.state.product.shortDescription}</p>
@@ -78,7 +78,7 @@ export default class ProductDetails extends React.Component {
                   </button>
                 </div>
               </div>
-              <div className="card-body">
+              <div className="card-body m-2">
                 <p className="card-text">{this.state.product.longDescription}</p>
               </div>
             </div>
