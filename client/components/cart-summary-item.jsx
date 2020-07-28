@@ -14,8 +14,8 @@ export default class CartSummaryItem extends React.Component {
             <h6 className="card-subtitle mb-2 text-muted">${this.props.item.price * this.props.item.quantity}</h6>
             <div>
               Quantity:
-              <a href="#" className="incrementers previous border ml-2" onClick={() => { this.props.deleteFromCart(this.props.item.cartItemId); }}>-</a><span className="mx-2">{this.props.item.quantity}</span>
-              <a href="#" className="incrementers next border" onClick={() => { this.props.addToCart(this.props.item); }}>+</a>
+              <button className="incrementers previous border ml-2" onClick={() => { this.props.deleteFromCart(this.props.item.cartItemId); }}>-</button><span className="mx-2">{this.props.item.quantity}</span>
+              <button href="#" className="incrementers next border" onClick={() => { this.props.addToCart(this.props.item); }}>+</button>
             </div>
             <p>{this.props.item.shortDescription}</p>
             <button type="button" className="btn btn-danger" onClick={() => { this.props.deleteAllFromCart(this.props.item.cartItemId); }}>Remove all from Cart</button>
