@@ -78,67 +78,6 @@ app.get('/api/cart', (req, res, next) => {
   }
 });
 
-// app.post('/api/cart', (req, res, next) => {
-//   if (!req.body.productId || req.body.productId <= 0) {
-//     return res.status(400).json({ error: 'invalid productId or no productId given' });
-//   }
-
-//   const sql = `
-//     select "price"
-//       from "products"
-//     where "productId" = $1
-//   `;
-
-//   const sql2 = `
-//     insert into "carts" ("cartId", "createdAt")
-//       values (default, default)
-//     returning "cartId"
-//   `;
-
-//   const sql3 = `
-//     insert into "cartItems" ("cartId", "productId", "price")
-//       values ($1, $2, $3)
-//     returning "cartItemId"
-//   `;
-
-//   const sql4 = `
-//     select "c"."cartItemId",
-//         "c"."price",
-//         "p"."productId",
-//         "p"."image",
-//         "p"."name",
-//         "p"."shortDescription"
-//     from "cartItems" as "c"
-//     join "products" as "p" using ("productId")
-//     where "c"."cartItemId" = $1
-//   `;
-
-//   const params = [parseInt(req.body.productId)];
-//   db.query(sql, params)
-//     .then(result => {
-//       if (result.rows.length < 1) {
-//         throw new ClientError('no products matching product id', 400);
-//       } else {
-//         if (req.session.cartId) {
-//           return { cartId: req.session.cartId, price: result.rows[0].price };
-//         }
-//         return db.query(sql2)
-//           .then(result2 => { return { cartId: result2.rows[0].cartId, price: result.rows[0].price }; });
-//       }
-//     })
-//     .then(data => {
-//       req.session.cartId = data.cartId;
-//       return db.query(sql3, [data.cartId, parseInt(req.body.productId), data.price])
-//         .then(result => result.rows[0]);
-//     })
-//     .then(data => {
-//       return db.query(sql4, [data.cartItemId])
-//         .then(result => res.status(201).json(result.rows[0]));
-//     })
-//     .catch(err => next(err));
-
-// });
-
 app.post('/api/cart', (req, res, next) => {
   if (!req.body.productId || req.body.productId <= 0) {
     return res.status(400).json({ error: 'invalid productId or no productId given' });
