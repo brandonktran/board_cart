@@ -196,13 +196,13 @@ app.post('/api/cart', (req, res, next) => {
         .then(result => result.rows[0])
         .then(count => {
           if (parseInt(count.count) === 0) {
-            return db.query(sql3, [data.cartId, parseInt(req.body.productId), data.price, 1])
+            return db.query(sql3, [data.cartId, parseInt(req.body.productId), data.price, parseInt(req.body.amount)])
               .then(result => result.rows[0]);
           } else {
             const incrementQuery = `update "cartItems" set "quantity" =
               quantity + $2 where "productId" = $1 and "cartId"=$3
             returning "cartItemId"`;
-            return db.query(incrementQuery, [parseInt(req.body.productId), 1, req.session.cartId])
+            return db.query(incrementQuery, [parseInt(req.body.productId), parseInt(req.body.amount), req.session.cartId])
               .then(result => result.rows[0]);
           }
         });
