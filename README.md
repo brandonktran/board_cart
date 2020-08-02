@@ -7,7 +7,8 @@ Webpack<br/>
 Babel<br/>
 Node.js<br/>
 Express.js<br/>
-React.js
+React.js <br>
+PostgresQL
 
 
 ## Development
