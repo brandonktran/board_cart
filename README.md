@@ -12,9 +12,9 @@ React.js
 
 ## Development
 ### System Requirements
-Node.js 10 or higher
-NPM 6 or higher
-PostgreSQL 10 or higher
+Node.js 10 or higher <br>
+NPM 6 or higher <br>
+PostgreSQL 10 or higher <br>
 Express.js 4 or higher
 
 ### Getting Started
