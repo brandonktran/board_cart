@@ -1,5 +1,5 @@
 # pacific_board_shop
-A full stack Node.js and React shopping cart app.
+A full stack Node.js and React.js e-commerce shopping cart app.
 
 ## Technologies Used
 Bootstrap<br/>
