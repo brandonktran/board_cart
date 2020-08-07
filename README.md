@@ -1,4 +1,4 @@
-# wicked-sales-js
+# pacific_board_shop
 A full stack Node.js and React shopping cart app.
 
 ## Technologies Used
