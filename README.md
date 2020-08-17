@@ -1,6 +1,8 @@
 # pacific_board_shop
 A full stack Node.js and React.js e-commerce shopping cart app.
 
+Website: https://boardcart.brandonktran.com/
+
 ## Technologies Used
 Bootstrap<br/>
 Webpack<br/> 
