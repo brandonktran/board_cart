@@ -36,6 +36,7 @@ export default class App extends React.Component {
   }
 
   setView(name, params) {
+    window.scrollTo(0, 0);
     this.setState({ view: { name: name, params: params } });
   }
 
@@ -123,7 +124,7 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(object)
     }).then(res => res.json())
-      .then(data => this.setState({ cart: [], view: { name: 'front', params: {} } }));
+      .then(data => this.setState({ cart: [] }));
   }
 
   calculateTotal(array) {

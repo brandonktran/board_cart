@@ -128,8 +128,15 @@ button {
 
 }
 
-@media (max-width: 544px) {
-.title {
-  font-size: 30px;
+.addToCart {
+  font-size: 14px;
 }
+
+@media (max-width: 544px) {
+  .addToCart {
+    font-size: 13px;
+  }
+  .title {
+    font-size: 30px;
+  }
 }

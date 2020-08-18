@@ -37,6 +37,10 @@ export default class ProductList extends React.Component {
 
     return (
       <div className="container" >
+        <div className="click text-muted ml-auto mt-4" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.props.setView('front', {}); }}>
+          <i className="fas fa-arrow-circle-left mr-2"></i>
+            Back to Home
+        </div>
         <div className="row" >
           {cards}
         </div>
