@@ -5,13 +5,13 @@ A full stack Node.js and React.js e-commerce shopping cart app for a board shop.
 Try the live site here: https://boardcart.brandonktran.com/
 
 #### Desktop
-<img src="server/public/gifs/desktop.gif" style="display:inline-block;" width="47%"> &nbsp;space&nbsp;space<img src="server/public/gifs/desktop2.gif" style="display:inline-block;" width="47%">
+<img src="server/public/gifs/desktop.gif" style="display:inline-block;" width="47%"> &nbsp; &nbsp; <img src="server/public/gifs/desktop2.gif" style="display:inline-block;" width="47%">
 
 #### iPad
-<img src="server/public/gifs/ipadLandscape.gif" style="display:inline-block;" width="47%">&nbsp;space&nbsp;space <img src="server/public/gifs/ipadPortrait.gif" style="display:inline-block;" width="35%">
+<img src="server/public/gifs/ipadLandscape.gif" style="display:inline-block;" width="47%"> &nbsp; &nbsp; <img src="server/public/gifs/ipadPortrait.gif" style="display:inline-block;" width="35%">
 
 #### iPhone 6/7/8
-<img src="server/public/gifs/iPhoneLandscape.gif" style="display:inline-block;" width="47%">&nbsp;space&nbsp;space <img src="server/public/gifs/iphonePortrait.gif" style="display:inline-block;" width="35%">
+<img src="server/public/gifs/iPhoneLandscape.gif" style="display:inline-block;" width="47%"> &nbsp; &nbsp; <img src="server/public/gifs/iphonePortrait.gif" style="display:inline-block;" width="35%">
 
 ## Technologies Used
 Bootstrap<br/>
