@@ -4,6 +4,8 @@ A full stack Node.js and React.js e-commerce shopping cart app for a board shop.
 ## Live Site
 Try the live site here: https://boardcart.brandonktran.com/
 
+<img src="server/public/gifs/desktop.gif" style="display:inline-block;" width="47%"> 
+
 ## Technologies Used
 Bootstrap<br/>
 Webpack<br/> 
