@@ -42,28 +42,223 @@ export default class CheckoutForm extends React.Component {
   render() {
     const submitInfo = { name: this.state.name, creditCard: this.state.card, shippingAddress: this.state.address };
     return (
-      <div>
-        <h1 className="text-center">My Cart</h1>
-        <h3 style={{ textAlign: 'center' }}>Total: ${this.props.total} </h3>
-        <form className="text-center" onSubmit={() => { this.handleSubmit(event, submitInfo); }} onReset={this.handleReset}>
-          <div className="form-group">
-            <label className="mr-2">Name</label> <br></br>
-            <input required type="text" onChange={this.handleChange} name="name" />
-          </div>
-          <div className="form-group">
-            <label className="mr-2">Credit Card</label> <br></br>
-            <input required type="text" onChange={this.handleChange} name="card" />
-          </div>
-          <div className="form-group">
-            <label className="mr-2">Shipping Address</label> <br></br>
-            <textarea required type="text" onChange={this.handleChange} name="address"></textarea>
-          </div>
-          <div>
-            <h4><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.handleReset(); }}> &lt; Continue Shopping</a></h4>
-            <button type="submit" className="btn btn-success m-1">Place Order</button>
-          </div>
-        </form>
-      </div>
+      <div className="container py-5">
+        <div className="mb-3">
+          <h1 className="text-left my-2">Checkout</h1>
+          <h3 className="text-left my-2">Total: ${this.props.total} </h3>
+          <div className="row">
+            <div className="col-md-12">
+              <form className="text-center p-3 border rounded bg-white" onSubmit={() => { this.handleSubmit(event, submitInfo); }} onReset={this.handleReset}>
+                <div className="form-group">
+                  <h3 className="text-left">Billing/Shipping Address</h3>
+                </div>
+                <div className="form-group">
+                  <label className="mr-2" htmlFor="name" style={{ float: 'left' }}>Full Name*</label>
+                  <input required type="text" className="form-control " onChange={this.handleChange} name="name" />
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <label htmlFor="name" style={{ float: 'left' }}>Phone</label>
+                    <input
+                      className="form-control"
+                      type="tel"
+                      autoComplete="new-password"
+                      name="phone"
+                      minLength="10"
+                      maxLength="11"
+                    />
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="email" style={{ float: 'left' }}>Email</label>
+                    <input
+                      className="form-control"
+                      type="email"
+                      autoComplete="new-password"
+                      name="email"
+                      minLength="6"
+                      maxLength="254"
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <label className="mr-2" style={{ float: 'left' }}>Address 1*</label> <br></br>
+                    <input required type="text" className="form-control" onChange={this.handleChange} name="address"></input>
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label htmlFor="inputAddress2" style={{ float: 'left' }}>Address 2</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="address2"
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <label htmlFor="inputCity" style={{ float: 'left' }}>City</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      autoComplete="new-password"
+                      name="city"
+                      minLength="3"
+                      maxLength="50"
+                    />
+                  </div>
+                  <div className="form-group col-md-3">
+                    <label htmlFor="inputState" style={{ float: 'left' }}>State</label>
+                    <select
+                      className="form-control"
+                      name="state"
+                    >
+                      <option defaultValue hidden></option>
+                      <option value="AL">Alabama</option>
+                      <option value="AK">Alaska</option>
+                      <option value="AZ">Arizona</option>
+                      <option value="AR">Arkansas</option>
+                      <option value="CA">California</option>
+                      <option value="CO">Colorado</option>
+                      <option value="CT">Connecticut</option>
+                      <option value="DE">Delaware</option>
+                      <option value="DC">District Of Columbia</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="IL">Illinois</option>
+                      <option value="IN">Indiana</option>
+                      <option value="IA">Iowa</option>
+                      <option value="KS">Kansas</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="LA">Louisiana</option>
+                      <option value="ME">Maine</option>
+                      <option value="MD">Maryland</option>
+                      <option value="MA">Massachusetts</option>
+                      <option value="MI">Michigan</option>
+                      <option value="MN">Minnesota</option>
+                      <option value="MS">Mississippi</option>
+                      <option value="MO">Missouri</option>
+                      <option value="MT">Montana</option>
+                      <option value="NE">Nebraska</option>
+                      <option value="NV">Nevada</option>
+                      <option value="NH">New Hampshire</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="NM">New Mexico</option>
+                      <option value="NY">New York</option>
+                      <option value="NC">North Carolina</option>
+                      <option value="ND">North Dakota</option>
+                      <option value="OH">Ohio</option>
+                      <option value="OK">Oklahoma</option>
+                      <option value="OR">Oregon</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="RI">Rhode Island</option>
+                      <option value="SC">South Carolina</option>
+                      <option value="SD">South Dakota</option>
+                      <option value="TN">Tennessee</option>
+                      <option value="TX">Texas</option>
+                      <option value="UT">Utah</option>
+                      <option value="VT">Vermont</option>
+                      <option value="VA">Virginia</option>
+                      <option value="WA">Washington</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="WI">Wisconsin</option>
+                      <option value="WY">Wyoming</option>
+                    </select>
+                  </div>
+                  <div className="form-group col-md-3">
+                    <label htmlFor="inputZip" style={{ float: 'left' }}>Zip</label>
+                    <input
+                      className="form-control"
+                      type="tel"
+                      autoComplete="new-password"
+                      name="zipCode"
+                      minLength="5"
+                      maxLength="5"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <h3 className="text-left">Payment Details</h3>
+                </div>
+                <div className="form-row p-3 border rounded mb-3">
+                  <div className="form-group col-md-6">
+                    <div className="form-group">
+                      <label className="mr-2" style={{ float: 'left' }}>Credit Card Number*</label>
+                      <input required type="text" className="form-control" onChange={this.handleChange} name="card" />
+                    </div>
+                  </div>
+                  <div className="form-group col-md-2">
+                    <label htmlFor="inputState" style={{ float: 'left' }}>Month</label>
+                    <select
+                      name="month"
+                      className="form-control"
+                    >
+                      <option defaultValue hidden></option>
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                  </div>
+                  <div className="form-group col-md-2">
+                    <label htmlFor="inputState" style={{ float: 'left' }}>Year</label>
+                    <select
+                      className="form-control"
+                      name="year"
+                    >
+                      <option defaultValue hidden></option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                      <option value="2027">2027</option>
+                      <option value="2028">2028</option>
+                      <option value="2029">2029</option>
+                      <option value="2030">2030</option>
+                    </select>
+                  </div>
+                  <div className="form-group col-md-2">
+                    <label htmlFor="inputZip" style={{ float: 'left' }}>CVV</label>
+                    <input
+                      type="tel"
+                      autoComplete="new-password"
+                      name="cvv"
+                      className="form-control"
+                      minLength="3"
+                      maxLength="4"
+                    />
+                  </div>
+                </div>
+                <span className="my-4">
+                  This website is for demonstration purposes only and no
+                  payment processing will occur. Please note that personal information
+                  such as names and credit card information should not
+                  be used on on this form.
+                </span>
+                <div className="my-2">
+                  <button type="submit" className="btn btn-success m-1">Place Order</button>
+                </div>
+              </form>
+            </div>
+          </div >
+        </div >
+        <div className="click text-muted ml-auto m-4" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.handleReset(); }}>
+          <i className="fas fa-arrow-circle-left mr-2"></i>
+            Continue Shopping
+        </div>
+      </div >
     );
   }
 }

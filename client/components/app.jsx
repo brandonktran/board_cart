@@ -182,7 +182,7 @@ export default class App extends React.Component {
           <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
           <Transition key={this.state.view.name}>
             <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} deleteAllFromCart={this.deleteAllFromCart} category={this.state.view.params.type} addToCart={this.addToCart} />
-            <Footer />
+            <Footer view={this.state.view.name} cart={this.state.cart} />
           </Transition>
         </>
       );
