@@ -8,10 +8,10 @@ Try the live site here: https://boardcart.brandonktran.com/
 <img src="server/public/gifs/desktop.gif" style="display:inline-block;" width="47%"> <img src="server/public/gifs/desktop2.gif" style="display:inline-block;" width="47%">
 
 #### iPad
-<img src="server/public/gifs/ipadLandscape.gif" style="display:inline-block;" width="47%"> <img src="server/public/gifs/ipadPortrait.gif" style="display:inline-block;" width="47%">
+<img src="server/public/gifs/ipadLandscape.gif" style="display:inline-block;" width="47%"> <img src="server/public/gifs/ipadPortrait.gif" style="display:inline-block;" width="35%">
 
 #### iPhone 6/7/8
-<img src="server/public/gifs/iphoneLandscape.gif" style="display:inline-block;" width="47%"> <img src="server/public/gifs/iphonePortrait.gif" style="display:inline-block;" width="47%">
+<img src="server/public/gifs/iPhoneLandscape.gif" style="display:inline-block;" width="47%"> <img src="server/public/gifs/iphonePortrait.gif" style="display:inline-block;" width="35%">
 
 ## Technologies Used
 Bootstrap<br/>
