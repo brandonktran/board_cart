@@ -1,7 +1,8 @@
 # boardcart
 A full stack Node.js and React.js e-commerce shopping cart app.
 
-Live Site: https://boardcart.brandonktran.com/
+## Live Site
+try the live site here: https://boardcart.brandonktran.com/
 
 ## Technologies Used
 Bootstrap<br/>
@@ -11,6 +12,13 @@ Node.js<br/>
 Express.js<br/>
 React.js <br>
 PostgresQL
+
+## Main Features
+User can view products.
+User can view the detail of a product.
+User can add products to a cart.
+User can view the products in a cart.
+User can place an order for a cart.
 
 
 ## Development
@@ -34,6 +42,6 @@ npm install
 
 Start the project.
 ```console
-npm run dev
+npm run start
 ```
 Then view the application by going to http://localhost:3000 in your browser.
