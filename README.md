@@ -21,7 +21,7 @@ User can view the products in a cart. <br/>
 User can place an order for a cart. <br/>
 
 <br/>
-Front-end functionality and interface built with React.js & back-end API built using Express.js, Node.js, and POstgresQL to handle client requests and data. 
+Front-end functionality and interface built with React.js & back-end API built using Express.js, Node.js, and PostgresQL to handle client requests and data. 
 
 
 ## Development
