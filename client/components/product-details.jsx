@@ -77,7 +77,7 @@ export default class ProductDetails extends React.Component {
                   <span className="sansFont">Quantity:</span>
                   <button className="btn incrementers previous border ml-2" onClick={() => this.quantityChange('-')}>-</button><span className="m-2">{this.state.quantity}</span>
                   <button href="#" className="btn incrementers next border" onClick={() => this.quantityChange('+')}>+</button>
-                  <button type="button" className="btn btn-success ml-2" data-toggle="modal" data-target="#ModalViewCart" onClick={() => { this.props.addToCart(this.state.product, this.state.quantity); }}>
+                  <button type="button" className="btn btn-success ml-2 addToCart" data-toggle="modal" data-target="#ModalViewCart" onClick={() => { this.props.addToCart(this.state.product, this.state.quantity); }}>
                     Add to Cart
                   </button>
                 </div>

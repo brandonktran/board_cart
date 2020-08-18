@@ -23,20 +23,15 @@ export default class CheckoutForm extends React.Component {
   handleSubmit(event, info) {
     event.preventDefault();
     this.props.placeOrder(info);
-    this.setState({
-      name: '',
-      card: '',
-      address: ''
-    });
   }
 
   handleReset() {
+    this.props.setView('front', {});
     this.setState({
       name: '',
       card: '',
       address: ''
     });
-    this.props.setView('front', {});
   }
 
   render() {
@@ -48,7 +43,7 @@ export default class CheckoutForm extends React.Component {
           <h3 className="text-left my-2">Total: ${this.props.total} </h3>
           <div className="row">
             <div className="col-md-12">
-              <form className="text-center p-3 border rounded bg-white" onSubmit={() => { this.handleSubmit(event, submitInfo); }} onReset={this.handleReset}>
+              <form className="text-center p-3 border rounded bg-white" onSubmit={() => { this.handleSubmit(event, submitInfo); }}>
                 <div className="form-group">
                   <h3 className="text-left">Billing/Shipping Address</h3>
                 </div>
@@ -248,7 +243,7 @@ export default class CheckoutForm extends React.Component {
                   be used on on this form.
                 </span>
                 <div className="my-2">
-                  <button type="submit" className="btn btn-success m-1">Place Order</button>
+                  {(this.state.name !== '' && this.state.card !== '' && this.state.address !== '') ? <button type="submit" className="btn btn-success m-1" data-toggle="modal" data-target="#ModalCheckout">Place Order</button> : <button type="submit" className="btn btn-success m-1">Place Order</button>}
                 </div>
               </form>
             </div>
@@ -257,6 +252,18 @@ export default class CheckoutForm extends React.Component {
         <div className="click text-muted ml-auto m-4" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.handleReset(); }}>
           <i className="fas fa-arrow-circle-left mr-2"></i>
             Continue Shopping
+        </div>
+        <div className="modal fade" id="ModalCheckout" data-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="ModalCheckoutCenterTitle" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-body sansFont">
+                Your order has been placed! Thanks for shopping with us!
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => { this.handleReset(); }}>Back to Home</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div >
     );
