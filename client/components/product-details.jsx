@@ -59,27 +59,33 @@ export default class ProductDetails extends React.Component {
               </div>
             </div>
           </div>
-          <div className="container" >
-            <div className="card m-2 border-light shadow">
-              <a href="#" className="card-link m-3 text-muted" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.props.setView('catalog', { type: this.props.category }); }}> &lt; Back to Content</a>
-              <div className="row">
-                <div className="col">
+          <div className="my-5" >
+            <div className="col-md-8 bg-white border rounded py-3 m-auto">
+              <div className="click text-muted ml-auto" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.props.setView('catalog', { type: this.props.category }); }}>
+                <i className="fas fa-arrow-circle-left mr-2"></i>
+            Back to Catalog
+              </div>
+              {/* <a href="#" className="card-link m-3 text-muted" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.props.setView('catalog', { type: this.props.category }); }}> &lt; Back to Content</a> */}
+              <div className="row m-4 mx-auto">
+                <div className="col-md-4 m-2">
                   <img className="card-img-top ml-2 h-100" src={this.state.product.image.toString()} alt="Card image cap" />
                 </div>
-                <div className="col m-2">
+                <div className="col m-3 p-3">
                   <h1 className="card-title"><b>{this.state.product.name}</b></h1>
                   <h4 className="card-subtitle mb-2 text-muted">${this.state.product.price}</h4>
                   <p className="card-text">{this.state.product.shortDescription}</p>
                   <span className="sansFont">Quantity:</span>
                   <button className="btn incrementers previous border ml-2" onClick={() => this.quantityChange('-')}>-</button><span className="m-2">{this.state.quantity}</span>
                   <button href="#" className="btn incrementers next border" onClick={() => this.quantityChange('+')}>+</button>
-                  <button type="button" className="btn btn-primary ml-2" data-toggle="modal" data-target="#ModalViewCart" onClick={() => { this.props.addToCart(this.state.product, this.state.quantity); }}>
+                  <button type="button" className="btn btn-success ml-2" data-toggle="modal" data-target="#ModalViewCart" onClick={() => { this.props.addToCart(this.state.product, this.state.quantity); }}>
                     Add to Cart
                   </button>
                 </div>
               </div>
-              <div className="card-body m-2">
-                <p className="card-text">{this.state.product.longDescription}</p>
+              <div className="row m-4 mx-auto">
+                <div className="col-md-12 card-text">
+                  {this.state.product.longDescription}
+                </div>
               </div>
             </div>
           </div >

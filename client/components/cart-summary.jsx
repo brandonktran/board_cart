@@ -13,20 +13,26 @@ export default class CartSummary extends React.Component {
     if (this.props.cart.length > 0) {
       return (
         <div className="container">
-          <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}> &lt; Back to Home</a></h4>
+          <div className="click text-muted ml-auto m-4" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.props.setView('front', {}); }}>
+            <i className="fas fa-arrow-circle-left mr-2"></i>
+            Back to Home
+          </div>
           <h1>My Cart</h1>
           {items}
-          <div>
-            <h3 className="mb-4 mt-2">Total: ${this.props.total} <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.setView('checkout', {}); }} style={{ float: 'right' }}>Checkout</button></h3>
+          <div className="mb-4">
+            <h3 className="mb-4 my-2">Total: ${this.props.total} <button type="submit" className="btn btn-success m-1" onClick={() => { this.props.setView('checkout', {}); }} style={{ float: 'right' }}>Checkout</button></h3>
           </div>
         </div>
       );
     }
     return (
       <div className="container">
-        <h4 className="m-3"><a href="#" className="card-link m-1 mt-3 text-muted" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}> &lt; Back to Home</a></h4>
-        <h1>My Cart</h1>
-        Cart is Empty
+        <div className="click text-muted ml-auto m-4" style={{ cursor: 'pointer', fontSize: '20px' }} onClick={() => { this.props.setView('front', {}); }}>
+          <i className="fas fa-arrow-circle-left mr-2"></i>
+            Back to Home
+        </div>
+        <h1 className="mb-2">My Cart</h1>
+        <h3 className="my-2">Cart is Empty!</h3>
       </div>
     );
 
