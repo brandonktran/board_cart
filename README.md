@@ -1,5 +1,5 @@
 # boardcart
-A full stack Node.js and React.js e-commerce shopping cart app.
+A full stack Node.js and React.js e-commerce shopping cart app for a board shop.
 
 ## Live Site
 try the live site here: https://boardcart.brandonktran.com/
