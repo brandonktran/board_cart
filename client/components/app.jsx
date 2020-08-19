@@ -152,49 +152,69 @@ export default class App extends React.Component {
     if (this.state.view.name === 'front') {
       return (
         <>
-          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
-          <Transition key={this.state.view.name}>
-            <FrontPage setView={this.setView} />
-          </Transition>
-          <Footer />
+          <div id="page-container">
+            <div id="content-wrap">
+              <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+              <Transition key={this.state.view.name}>
+                <FrontPage setView={this.setView} />
+              </Transition>
+            </div>
+            <Footer />
+          </div>
         </>
       );
     } else if (this.state.view.name === 'catalog') {
       return (
         <>
-          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
-          <Transition key={this.state.view.name}>
-            <ProductList setView={this.setView} category={this.state.view.params.type} />
-          </Transition>
-          <Footer />
+          <div id="page-container">
+            <div id="content-wrap">
+              <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+              <Transition key={this.state.view.name}>
+                <ProductList setView={this.setView} category={this.state.view.params.type} />
+              </Transition>
+            </div>
+            <Footer />
+          </div>
         </>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <>
-          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
-          <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView} category={this.state.view.params.type} />
-          <Footer />
+          <div id="page-container">
+            <div id="content-wrap">
+              <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+              <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView} category={this.state.view.params.type} />
+            </div>
+            <Footer />
+          </div>
         </>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <>
-          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
-          <Transition key={this.state.view.name}>
-            <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} deleteAllFromCart={this.deleteAllFromCart} category={this.state.view.params.type} addToCart={this.addToCart} />
-            <Footer view={this.state.view.name} cart={this.state.cart} />
-          </Transition>
+          <div id="page-container">
+            <div id="content-wrap">
+              <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+              <Transition key={this.state.view.name}>
+                <CartSummary cart={this.state.cart} setView={this.setView} total={this.calculateTotal(this.state.cart)} deleteFromCart={this.deleteFromCart} deleteAllFromCart={this.deleteAllFromCart} category={this.state.view.params.type} addToCart={this.addToCart} />
+              </Transition>
+            </div>
+            <Footer />
+          </div>
         </>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <>
-          <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
-          <Transition key={this.state.view.name}>
-            <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.calculateTotal(this.state.cart)} cart={this.state.cart} />
+          <div id="page-container">
+            <div id="content-wrap">
+              <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
+              <Transition key={this.state.view.name}>
+                <CheckoutForm setView={this.setView} placeOrder={this.placeOrder} total={this.calculateTotal(this.state.cart)} cart={this.state.cart} />
+              </Transition>
+            </div>
             <Footer />
-          </Transition>
+          </div>
         </>
       );
     }
