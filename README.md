@@ -14,13 +14,17 @@ Try the live site here: https://boardcart.brandonktran.com/
 <img src="server/public/gifs/iPhoneLandscape.gif" style="display:inline-block;" width="47%"> &nbsp; &nbsp; <img src="server/public/gifs/iphonePortrait.gif" style="display:inline-block;" width="35%">
 
 ## Technologies Used
+React.js <br>
+Node.js<br/>
+Express.js<br/>
+PostgresQL </br>
 Bootstrap<br/>
 Webpack<br/> 
 Babel<br/>
-Node.js<br/>
-Express.js<br/>
-React.js <br>
-PostgresQL
+HTML <br/>
+CSS <br/>
+AWS EC2<br/>
+
 
 ## Main Features
 1. User can view products. <br/>
