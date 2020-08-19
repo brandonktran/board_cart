@@ -6,7 +6,7 @@ export default class Header extends React.Component {
     return (
       <nav className="navbar navbar-dark bg-dark">
         <h1 className="navbar-brand" style={{ width: '100%' }}>
-          <span className=" ml-2" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}>
+          <span className=" ml-1" style={{ cursor: 'pointer' }} onClick={() => { this.props.setView('front', {}); }}>
             <i className="fas fa-snowboarding my-3 ml-3 title"></i>
             <span className="ml-2 title">BoardCart</span>
           </span>
