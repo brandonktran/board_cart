@@ -23,11 +23,11 @@ React.js <br>
 PostgresQL
 
 ## Main Features
-User can view products. <br/>
-User can view the detail of a product. <br/>
-User can add products to a cart. <br/>
-User can view the products in a cart. <br/>
-User can place an order for a cart. <br/>
+1. User can view products. <br/>
+2. User can view the detail of a product. <br/>
+3. User can add products to a cart. <br/>
+4. User can view the products in a cart. <br/>
+5. User can place an order for a cart. <br/>
 
 <br/>
 Front-end functionality and interface built with React.js & back-end API built using Express.js, Node.js, and PostgresQL to handle client requests and data. 
