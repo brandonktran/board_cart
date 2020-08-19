@@ -34,7 +34,7 @@ AWS EC2<br/>
 5. User can place an order for a cart. <br/>
 
 <br/>
-Front-end functionality and interface built with React.js & back-end API built using Express.js, Node.js, and PostgresQL to handle client requests and data. 
+Front-end functionality and interface built with React.js & back-end API built using Express.js, Node.js to handle client requests and data. Data stored and retrieved from PostgresQL database.
 
 
 ## Development
