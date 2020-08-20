@@ -66,7 +66,7 @@ Create the database
 createdb boardcart
 ```
 
-Copy .env.example and update with your PostgresQL credentials
+Copy .env.example and update with your PostgreSQL credentials
 ```console
 cp .env.example .env
 ```
