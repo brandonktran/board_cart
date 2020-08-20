@@ -14,16 +14,16 @@ Try the live site here: https://boardcart.brandonktran.com/
 <img src="server/public/gifs/iPhoneLandscape.gif" style="display:inline-block;" width="47%"> &nbsp; &nbsp; <img src="server/public/gifs/iphonePortrait.gif" style="display:inline-block;" width="35%">
 
 ## Technologies Used
-React.js <br>
-Node.js<br/>
-Express.js<br/>
-PostgresQL </br>
-Bootstrap<br/>
-Webpack<br/> 
-Babel<br/>
-HTML <br/>
-CSS <br/>
-AWS EC2<br/>
+<li>React.js</li>
+<li>Node.js</li>
+<li>Express.js</li>
+<li>PostgresQL</li>
+<li>Bootstrap</li>
+<li>Webpack</li>
+<li>Babel</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>AWS EC2</li>
 
 
 ## Main Features
