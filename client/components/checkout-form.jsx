@@ -56,22 +56,18 @@ export default class CheckoutForm extends React.Component {
                     <label htmlFor="name" style={{ float: 'left' }}>Phone</label>
                     <input
                       className="form-control"
-                      type="tel"
+                      type="text"
                       autoComplete="new-password"
                       name="phone"
-                      minLength="10"
-                      maxLength="11"
                     />
                   </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="email" style={{ float: 'left' }}>Email</label>
                     <input
                       className="form-control"
-                      type="email"
+                      type="text"
                       autoComplete="new-password"
                       name="email"
-                      minLength="6"
-                      maxLength="254"
                     />
                   </div>
                 </div>
@@ -97,8 +93,6 @@ export default class CheckoutForm extends React.Component {
                       type="text"
                       autoComplete="new-password"
                       name="city"
-                      minLength="3"
-                      maxLength="50"
                     />
                   </div>
                   <div className="form-group col-md-3">
@@ -165,11 +159,9 @@ export default class CheckoutForm extends React.Component {
                     <label htmlFor="inputZip" style={{ float: 'left' }}>Zip</label>
                     <input
                       className="form-control"
-                      type="tel"
+                      type="text"
                       autoComplete="new-password"
                       name="zipCode"
-                      minLength="5"
-                      maxLength="5"
                     />
                   </div>
                 </div>
@@ -227,15 +219,17 @@ export default class CheckoutForm extends React.Component {
                   <div className="form-group col-md-2">
                     <label htmlFor="inputZip" style={{ float: 'left' }}>CVV</label>
                     <input
-                      type="tel"
+                      type="text"
                       autoComplete="new-password"
                       name="cvv"
                       className="form-control"
-                      minLength="3"
-                      maxLength="4"
                     />
                   </div>
                 </div>
+                <span className="my-4">
+                  * For simplicity, only fields marked with * need to be filled in order to place an order.
+                </span> <br></br>
+                <br></br>
                 <span className="my-4">
                   This website is for demonstration purposes only and no
                   payment processing will occur. Please note that personal information
