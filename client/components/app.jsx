@@ -7,6 +7,7 @@ import CheckoutForm from './checkout-form';
 import Transition from './transition-component';
 import FrontPage from './front-page';
 import Footer from './footer';
+import FrontModal from './frontModal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: { name: 'front', params: {} },
-      cart: []
+      cart: [],
+      modalOpen: true
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -23,6 +25,7 @@ export default class App extends React.Component {
     this.calculateTotal = this.calculateTotal.bind(this);
     this.deleteFromCart = this.deleteFromCart.bind(this);
     this.deleteAllFromCart = this.deleteAllFromCart.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -148,10 +151,16 @@ export default class App extends React.Component {
     return result;
   }
 
+  closeModal() {
+    this.setState({ modalOpen: false });
+  }
+
   render() {
+    const modal = this.state.modalOpen ? <FrontModal close={this.closeModal}></FrontModal> : null;
     if (this.state.view.name === 'front') {
       return (
         <>
+          {modal}
           <div id="page-container">
             <div id="content-wrap">
               <Header cartItemCount={this.totalItems(this.state.cart)} setView={this.setView} />
