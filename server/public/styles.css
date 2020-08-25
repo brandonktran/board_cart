@@ -156,3 +156,15 @@ button {
     font-size: 30px;
   }
 }
+
+.background-modal {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.384) ;
+  left: 0;
+  top: 0;
+}
+
+.modal-contents {
+  max-width: 380px;
+  user-select: none;
+}
